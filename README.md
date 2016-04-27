@@ -9,19 +9,19 @@ room111, UdK, medienhaus, kleistpark
 
 dates
 -----
-- [ ] [28apr 14-16](https://github.com/redFrik/udk14-Clicks_and_Cuts/tree/master/udk151105): introduction and overview
+- [ ] [28apr 14-16](https://github.com/redFrik/udk15-Surveillance_and_Analysis/tree/master/udk160428): introduction and overview
 - [ ] 05may: **NO CLASS** (holiday)
-- [ ] [12may 14-16](https://github.com/redFrik/udk14-Clicks_and_Cuts/tree/master/udk151119): 
-- [ ] [19may 14-16](https://github.com/redFrik/udk14-Clicks_and_Cuts/tree/master/udk151126): 
-- [ ] [26may 14-16](https://github.com/redFrik/udk14-Clicks_and_Cuts/tree/master/udk151203): 
-- [ ] [02jun 14-16](https://github.com/redFrik/udk14-Clicks_and_Cuts/tree/master/udk151210): 
-- [ ] [09jun 14-16](https://github.com/redFrik/udk14-Clicks_and_Cuts/tree/master/udk151217): 
-- [ ] [16jun 14-16](https://github.com/redFrik/udk14-Clicks_and_Cuts/tree/master/udk151217): 
-- [ ] [23jun 14-16](https://github.com/redFrik/udk14-Clicks_and_Cuts/tree/master/udk151217): 
-- [ ] [30jun 14-16](https://github.com/redFrik/udk14-Clicks_and_Cuts/tree/master/udk151217): 
-- [ ] [07jul 14-16](https://github.com/redFrik/udk14-Clicks_and_Cuts/tree/master/udk151217): 
-- [ ] [14jul 14-16](https://github.com/redFrik/udk14-Clicks_and_Cuts/tree/master/udk151217): 
-- [ ] [21jul 14-16](https://github.com/redFrik/udk14-Clicks_and_Cuts/tree/master/udk151217): 
+- [ ] 12may 14-16
+- [ ] 19may 14-16
+- [ ] 26may 14-16
+- [ ] 02jun 14-16
+- [ ] 09jun 14-16
+- [ ] 16jun 14-16
+- [ ] 23jun 14-16
+- [ ] 30jun 14-16
+- [ ] 07jul 14-16
+- [ ] 14jul 14-16
+- [ ] 21jul 14-16
 
 links to previous semesters... <http://redfrik.github.io/udk00-Audiovisual_Programming/>
 
