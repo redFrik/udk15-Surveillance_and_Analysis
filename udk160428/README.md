@@ -57,12 +57,9 @@ optical flow
 
 this example takes the optical flow example that comes with opencv, adds camera input and osc output to supercollider.
 
-first install OpenCV and OscP5 libraries for Processing.
+(this needs the three libraries OpenCV, OscP5 and Video that we installed above)
 
-* open processing and the sketch menu
-* select `Import Library...` and then `Add Library...`
-* search for 'opencv' and install
-* search for 'oscp5' and install
+run this code first and then the supercollider code below.
 
 processing code:
 
@@ -87,6 +84,8 @@ void setup() {
     video.start();
     oscP5= new OscP5(this, 12000);
     receiver= new NetAddress("127.0.0.1", 57120);  //ip address and port to send to, 57120= sc
+    //receiver= new NetAddress("192.168.1.10", 57120);  //send to some other computer on the same network
+    //receiver= new NetAddress("192.168.1.255", 57120);  //broadcast to all computers on the same network
 }
 
 void draw() {
@@ -168,7 +167,7 @@ try your own webpage.
 bluetooth
 --
 
-<https://github.com/adafruit/adafruit-bluefruit-le-desktop>
+install this... <https://github.com/adafruit/adafruit-bluefruit-le-desktop>, activate bluetooth and then start scanning for devices.
 
 faceosc
 --
