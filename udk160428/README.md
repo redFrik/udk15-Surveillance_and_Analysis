@@ -12,6 +12,46 @@ course software
 * [Python](https://www.python.org)
 * and perhaps some other programs like [Arduino](http://www.arduino.cc) and [Audacity](http://audacityteam.org)
 
+processing
+--
+
+first download and install processing 3 from <http://processing.org>.
+then open sketch / import library / add library and install the following three libraries...
+
+* Video
+* OpenCV
+* OscP5
+
+mouse
+--
+
+now try this basic example in processing...
+
+```cpp
+void setup() {
+    fullScreen();  //'esc' key to exit
+}
+void draw() {
+    rect(mouseX, mouseY, mouseX-pmouseX, mouseY-pmouseY);
+}
+```
+
+examples
+--
+
+now try the following examples that you can find in the menu file / examples / libraries / video / capture...
+
+* BackgroundSubtraction
+* BrightnessThresholding
+* BrightnessTracking
+* FrameDifferencing
+
+and then the following examples from file / examples / contributed libraries / opencv for processing...
+
+* BackgroundSubtraction (different from above)
+* LiveCamTest
+* WhichFace
+
 optical flow
 --
 
@@ -96,4 +136,62 @@ s.waitForBoot{
     OSCdef(\flow, {|msg| Ndef(\snd).set(\x, msg[1], \y, msg[2])}, \flow);
 };
 )
+
+//trigger
+(
+s.waitForBoot{
+    var syn= SynthDef(\ping, {|t_trig= 0, x= 0, y= 0|
+        var env= EnvGen.ar(Env.perc(0.001, 0.1), t_trig);
+        var snd= SinOsc.ar(x*100+400);
+        Out.ar(0, Pan2.ar(snd*env, y.poll));
+    }).play;
+    OSCdef(\flow, {|msg|
+        var x= msg[1];
+        var y= msg[2];
+        if(x.abs>1 or:{y.abs>1}, {
+            syn.set(\t_trig, 1, \x, x, \y, y);
+        });
+    }, \flow);
+};
+)
 ```
+
+traceroute
+--
+
+(might only work on osx and linux)
+
+open terminal and type `traceroute www.google.de` and then compare that with `traceroute www.google.jp`
+
+try your own webpage.
+
+bluetooth
+--
+
+<https://github.com/adafruit/adafruit-bluefruit-le-desktop>
+
+faceosc
+--
+
+written in openframeworks. osx binary... <https://github.com/kylemcdonald/ofxFaceTracker/releases>
+but you should also be able to grab the project and run it under windows+linux if you have oF installed.
+
+the default output port is 8338. so to listen to it in supercollider do something like this...
+
+```
+OSCdef(\gesture_eye_right, {|msg| msg.postln}, '/gesture/eye/right', recvPort:8338)
+OSCdef(\gesture_eyebrow_left, {|msg| msg.postln}, '/gesture/eyebrow/left', recvPort:8338)
+OSCdef(\gesture_eyebrow_right, {|msg| msg.postln}, '/gesture/eyebrow/right', recvPort:8338)
+OSCdef(\gesture_jaw, {|msg| msg.postln}, '/gesture/jaw', recvPort:8338)
+OSCdef(\gesture_nostrils, {|msg| msg.postln}, '/gesture/nostrils', recvPort:8338);
+```
+
+netcat
+--
+
+to listen to udp (osc) on some port run this in terminal...
+
+`nc -ul 8338`
+
+note: one can only have one udp port open at a time so sometimes programs will complain that the port is already in use.
+

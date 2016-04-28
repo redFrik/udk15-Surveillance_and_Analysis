@@ -9,7 +9,7 @@ room111, UdK, medienhaus, kleistpark
 
 dates
 -----
-- [ ] [28apr 14-16](https://github.com/redFrik/udk15-Surveillance_and_Analysis/tree/master/udk160428): introduction and overview
+- [x] [28apr 14-16](https://github.com/redFrik/udk15-Surveillance_and_Analysis/tree/master/udk160428): introduction and overview
 - [ ] 05may: **NO CLASS** (holiday)
 - [ ] 12may 14-16
 - [ ] 19may 14-16
