@@ -222,7 +222,7 @@ bonus - advanced
 
 send the smoothed x y data to supercollider via osc.
 
-```
+```cpp
 //--basic osc
 import processing.video.*;
 import gab.opencv.*;
