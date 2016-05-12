@@ -58,7 +58,7 @@ Capture video;
 OpenCV opencv;
 
 void setup() {
-size(320, 240);
+    size(320, 240);
     video = new Capture(this, width, height);
     video.start();
     opencv= new OpenCV(this, width, height);
@@ -81,6 +81,8 @@ void draw() {
 try replacing `PVector loc = opencv.max();` to `PVector loc = opencv.min();` to track the darkest pixel.
 
 try to uncomment both image lines so that only the circle is drawn. add `background(0);` if you want to clear the screen each frame.
+
+also try drawing something different. try changing `ellipse(loc.x, loc.y, 10, 10);` to `rect(loc.x, loc.y, 50, 50);` or to `line(loc.x, loc.y, width*0.5, height*0.5);`
 
 filters
 --
@@ -214,3 +216,79 @@ void draw() {
 here `loc` can be seen as the target and `now` the current xy position.  `smooth` adds a bit of the difference between the two to `now` and thereby the circle approces the target in smaller and smaller steps.
 
 try with different values for smooth.
+
+bonus - advanced
+--
+
+send the smoothed x y data to supercollider via osc.
+
+```
+//--basic osc
+import processing.video.*;
+import gab.opencv.*;
+import oscP5.*;
+import netP5.*;
+
+Capture video;
+OpenCV opencv;
+OscP5 oscP5;
+NetAddress receiver;
+
+PVector now= new PVector(160, 120);
+float smooth= 0.02;  //lower is more smooth, 1.0 is no change
+
+void setup() {
+    size(320, 240);
+    video = new Capture(this, width, height);
+    video.start();
+    opencv= new OpenCV(this, width, height);
+    oscP5= new OscP5(this, 12000);
+    receiver= new NetAddress("127.0.0.1", 57120);
+}
+void captureEvent(Capture video) {
+    video.read();
+}
+void draw() {
+    opencv.loadImage(video);
+    opencv.blur(8);
+    image(opencv.getOutput(), 0, 0);  //note: draws the output of the opencv image
+    PVector loc = opencv.max();
+    now.x= now.x+((loc.x-now.x)*smooth);  //lag in x dimension
+    now.y= now.y+((loc.y-now.y)*smooth);  //lag in y dimension
+    stroke(255, 0, 0);
+    strokeWeight(4);
+    noFill();
+    ellipse(now.x, now.y, 10, 10);
+    sendOscData(now.x, now.y, loc.x, loc.y);  //send dot location and analysed location
+}
+void sendOscData(float x, float y, float tx, float ty) {
+    OscMessage msg= new OscMessage("/maxLoc");
+    msg.add(x);
+    msg.add(y);
+    msg.add(tx);
+    msg.add(ty);
+    oscP5.send(msg, receiver);
+}
+```
+
+and then in supercollider run this...
+
+```
+//sound
+(
+s.waitForBoot{
+    Ndef(\snd, {|x= 0, y= 0, tx= 0, ty= 0|
+        //here we use circle location x y to set frequencies of two oscillators
+        //and the absolute difference between target and circle as amplitude
+        SinOsc.ar([x, y]+500, 0, [tx-x, ty-y].abs/100);
+    }).play;
+    OSCdef(\max, {|msg|
+        //the msg that comes in here is x, y location of circle
+        //and then target location (the output of opencv max)
+        msg.postln;
+        //set the synth parameters with the incoming data
+        Ndef(\snd).set(\x, msg[1], \y, msg[2], \tx, msg[3], \ty, msg[4]);
+    }, \maxLoc);
+};
+)
+```
