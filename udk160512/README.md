@@ -12,7 +12,7 @@ and also installed the following three processing libraries...
 
 you will also need some sort of camera connected to your computer (the built-in webcamera is fine)
 
-basic camera
+camera
 --
 
 copy and paste the code below into processing. explore the example and get familiar with it.
@@ -44,7 +44,7 @@ also play with size by changing `size(320, 240);` to `size(1024, 240);`
 
 and last `video = new Capture(this, width, height);` to `video = new Capture(this, width, 800);`
 
-basic opencv
+opencv
 --
 
 a template example for camera with opencv. this locates the brightest pixel and draws a circle around it.
@@ -82,7 +82,7 @@ try replacing `PVector loc = opencv.max();` to `PVector loc = opencv.min();` to 
 
 try to uncomment both image lines so that only the circle is drawn. add `background(0);` if you want to clear the screen each frame.
 
-image processing
+filters
 --
 
 often you will want to adjust and prepare the image before doing the analysis. this example demonstrates how to apply filters to the image and change contrast, brightness etc. with this technique you can compensate for what the camera gives you - note: more professional cameras have settings for white balance, focus, brightness, contrast etc. in cheap webcameras this is often done automatically and thereby makes it a bit harder to use for camera tracking. so turn off auto white balance if you can.
@@ -136,7 +136,7 @@ note that the order in which you apply these filters matter. e.g. blurring and t
 
 now see <http://atduskgreg.github.io/opencv-processing/reference/> - click on OpenCV. read about the different methods and try out some of them.
 
-additional examples
+preview
 --
 
 sometimes it is handy to see multiple video images at the same time - to compare effects and what the camera sends versus what openvs outputs etc.
