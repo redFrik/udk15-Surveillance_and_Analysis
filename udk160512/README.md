@@ -179,7 +179,7 @@ smoothing
 
 another important technique is to smooth or lag the output xy data. here is one easy way to do that.
 
-```
+```cpp
 //--basic smoothing of data
 import processing.video.*;
 import gab.opencv.*;
@@ -210,5 +210,7 @@ void draw() {
     ellipse(now.x, now.y, 10, 10);
 }
 ```
+
+here `loc` can be seen as the target and `now` the current xy position.  `smooth` adds a bit of the difference between the two to `now` and thereby the circle approces the target in smaller and smaller steps.
 
 try with different values for smooth.
