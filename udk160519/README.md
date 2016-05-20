@@ -62,6 +62,7 @@ Ndef(\atrack, {|thresh= 0.1, dur= 4, freq= 200, rq= 1, atk= 0.1, rel= 1|
 Ndef(\atrack).gui;  //opens a gui where you can tune the tracker
 
 Ndef(\atrack).stop;
+Ndef(\atrack).clear;
 ```
 
 ```
@@ -82,6 +83,7 @@ Ndef(\ptrack, {|range= 20, dur= 4, freq= 200, atk= 0.1, rel= 1|
 Ndef(\ptrack).gui;  //opens a gui where you can tune the tracker
 
 Ndef(\ptrack).stop;
+Ndef(\ptrack).clear;
 ```
 
 ```
@@ -95,7 +97,8 @@ Ndef(\ttrack, {
 });
 )
 
-Ndef(\ttrack.stop;
+Ndef(\ttrack).stop;
+Ndef(\ttrack).clear;
 
 (
 //timbre tracking with sound
@@ -108,8 +111,9 @@ Ndef(\ttrack2, {|thresh= 1500, lag= 0.1|
 )
 
 Ndef(\ttrack2).gui;
-Ndef(\ttrack2).stop;
 
+Ndef(\ttrack2).stop;
+Ndef(\ttrack2).clear;
 ```
 
 ```
@@ -123,6 +127,9 @@ Ndef(\onOff, {|thresh= 0.09, time= 0.2, amp= 1|
     on.poll;
 });
 )
+
+Ndef(\onOff).stop;
+Ndef(\onOff).clear;
 ```
 
 ```
@@ -144,7 +151,6 @@ Ndef(\automaticRecorder, {|thresh= 0.09, time= 0.2, amp= 1|
 
 ~buffer.plot;  //see last recording
 ~buffer.write("~/Desktop/mybuffer.wav".standardizePath); //save last recording to desktop
-
 ```
 
 ```
@@ -152,19 +158,21 @@ Ndef(\automaticRecorder, {|thresh= 0.09, time= 0.2, amp= 1|
 
 //detector with recorder and playback
 (
-Ndef(\automaticRecorder2, {|thresh= 0.5, time= 0.2, amp= 1|
+Ndef(\automaticRecorder2, {|thresh= 0.5, time= 0.2, amp= 1, rate= 1|
     var src= SoundIn.ar*amp;
     //var src= BPF.ar(SoundIn.ar*amp, 150, 1); //variant with bandpass filter
     var off= DetectSilence.ar(src, thresh, time);
-    var on= 1-off;		//invert
+    var on= 1-off;      //invert
     on.poll;
     RecordBuf.ar(src, ~buffer2, loop:0, trigger: on);
-    PlayBuf.ar(1, ~buffer2, 1, loop: 1);
+    PlayBuf.ar(1, ~buffer2, rate, loop: 1).dup;
 }).play;
 )
 
 Ndef(\automaticRecorder2).gui;
+
 Ndef(\automaticRecorder2).stop;
+Ndef(\automaticRecorder2).clear;
 ```
 
 ```
@@ -186,11 +194,34 @@ Ndef(\automaticRecorder3, {|thresh= 0.09, time= 0.2, amp= 1|
 ~buffer3.play;  //trigger multiple times
 
 Ndef(\automaticRecorder3).gui;
+
 Ndef(\automaticRecorder3).stop;
+Ndef(\automaticRecorder3).clear;
 ```
+
+```
+~buffer4= Buffer.alloc(s, 44100*3);  //make a single three seconds long buffer
+
+//same as v3 but with playback
+(
+Ndef(\automaticRecorder4, {|thresh= 0.09, time= 0.2, amp= 1, rate= 1|
+    var src= SoundIn.ar*amp;
+    //var src= BPF.ar(SoundIn.ar*amp, 150, 1); //variant with bandpass filter
+    var off= DetectSilence.ar(src, thresh, time);
+    var on= 1-off;      //invert
+    on.poll;
+    RecordBuf.ar(src, ~buffer4, loop:1, run: on);  //here we only record when sound detected
+    PlayBuf.ar(1, ~buffer4, rate, loop:1).dup;
+}).play;
+)
+
+Ndef(\automaticRecorder4).gui;
+
+Ndef(\automaticRecorder4).stop;
+Ndef(\automaticRecorder4).clear;```
 
 links
 --
 
+Eli Fieldsteel's youtube supercollider tutorials...
 <https://www.youtube.com/watch?v=yRzsOOiJ_p4&list=PLPYzvS8A_rTaNDweXe6PX4CXSGq4iEWYC>
-
