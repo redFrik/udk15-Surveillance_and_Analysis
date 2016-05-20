@@ -5,8 +5,46 @@ this assumes you have downloaded and installed supercollider from <http://superc
 
 
 ```
-s.boot;
+s.boot  //you always need to run this to make sound
+
+"hello"
+
+2+600
+
+{SinOsc.ar(MouseX.kr([400, 600], 4000, 1))}.play
+
+cmd+.  //to stop
+
+{Saw.ar(MouseX.kr([400, 600], 4000, 1))}.play
+
+{LFTri.ar(MouseX.kr([400, 600], 4000, 1))}.play
+
+{Pulse.ar(MouseX.kr([400, 600], 4000, 1))}.play
+
+100.do{{Pulse.ar(MouseX.kr([Rand(400), 600], Rand(4000), 1))/100}.play}
+
+cmd+m  //to show level meters
+
+{Pulse.ar( Pitch.kr(SoundIn.ar)[0] ).dup}.play
+{Saw.ar( Pitch.kr(SoundIn.ar)[0] ).dup}.play
+{LFTri.ar( Pitch.kr(SoundIn.ar)[0] ).dup}.play
+{SinOsc.ar( Pitch.kr(SoundIn.ar)[0] ).dup}.play
+
+{Pulse.ar( Pitch.kr( DelayN.ar(SoundIn.ar, 1, 1))[0].lag(0.02) ).dup}.play
+
+{Pulse.ar( Amplitude.kr(SoundIn.ar).lag(0.1)* 4000 ).dup}.play
+
+{Pulse.ar( Amplitude.kr( DelayN.ar(SoundIn.ar, 1, 1)).lag(0.1)* 4000 ).dup}.play
+
+{Pulse.ar( 400 ).dup * Amplitude.kr(SoundIn.ar).lag(4) }.play
+
+{Pulse.ar( 400 ).dup * Amplitude.kr(SoundIn.ar).lagud(0.001, 4) }.play
+
+{DelayN.ar(SoundIn.ar, 2, 2)}.play  //delay mic input for 2 seconds
 ```
+
+examples
+--
 
 ```
 (
@@ -58,11 +96,24 @@ Ndef(\ttrack, {
 )
 
 Ndef(\ttrack.stop;
+
+(
+//timbre tracking with sound
+Ndef(\ttrack2, {|thresh= 1500, lag= 0.1|
+    var buf= LocalBuf(2048).clear;
+    var fft= FFT(buf, SoundIn.ar);
+    var t= SpecCentroid.kr(buf, fft);
+    SinOsc.ar(999) * (t<thresh).poll.lag(lag);  //also try replacing < with >
+}).play;
+)
+
+Ndef(\ttrack2).gui;
+Ndef(\ttrack2).stop;
+
 ```
 
 ```
 //--detect sound
-
 (
 Ndef(\onOff, {|thresh= 0.09, time= 0.2, amp= 1|
     var src= SoundIn.ar*amp;
@@ -72,24 +123,9 @@ Ndef(\onOff, {|thresh= 0.09, time= 0.2, amp= 1|
     on.poll;
 });
 )
+```
 
-
-
-//--recording sounds
-~buffers= Array.fill(10, {Buffer.alloc(s, 44100*3)});  //make ten, three seconds long buffers
-
-(
-//a single buffer recorder. records into ~buffers[x]. change x to select recording buffer
-Ndef(\recorder, {
-    var src= SoundIn.ar;
-    RecordBuf.ar(src, ~buffers[5], loop:0);
-});
-)
-~buffers[5].plot
-~buffers[5].play
-
-
-
+```
 //--detector with recorder - miniature i'm sitting in a room
 ~buffer= Buffer.alloc(s, 44100*3);  //make a single three seconds long buffer
 
@@ -103,7 +139,58 @@ Ndef(\automaticRecorder, {|thresh= 0.09, time= 0.2, amp= 1|
     RecordBuf.ar(src, ~buffer, loop:0, trigger: on);
 });
 )
-~buffer.play  //turn up the volume and trigger manually once in a while
+~buffer.play;  //turn up the volume and trigger manually once in a while
 //you should be able to record the recorded sound over and over
 
+~buffer.plot;  //see last recording
+~buffer.write("~/Desktop/mybuffer.wav".standardizePath); //save last recording to desktop
+
 ```
+
+```
+~buffer2= Buffer.alloc(s, 44100*3);  //make a single three seconds long buffer
+
+//detector with recorder and playback
+(
+Ndef(\automaticRecorder2, {|thresh= 0.5, time= 0.2, amp= 1|
+    var src= SoundIn.ar*amp;
+    //var src= BPF.ar(SoundIn.ar*amp, 150, 1); //variant with bandpass filter
+    var off= DetectSilence.ar(src, thresh, time);
+    var on= 1-off;		//invert
+    on.poll;
+    RecordBuf.ar(src, ~buffer2, loop:0, trigger: on);
+    PlayBuf.ar(1, ~buffer2, 1, loop: 1);
+}).play;
+)
+
+Ndef(\automaticRecorder2).gui;
+Ndef(\automaticRecorder2).stop;
+```
+
+```
+~buffer3= Buffer.alloc(s, 44100*3);  //make a single three seconds long buffer
+
+//detector used to fill up a buffer
+//only records when there is any should present
+(
+Ndef(\automaticRecorder3, {|thresh= 0.09, time= 0.2, amp= 1|
+    var src= SoundIn.ar*amp;
+    //var src= BPF.ar(SoundIn.ar*amp, 150, 1); //variant with bandpass filter
+    var off= DetectSilence.ar(src, thresh, time);
+    var on= 1-off;      //invert
+    on.poll;
+    RecordBuf.ar(src, ~buffer3, loop:1, run: on);  //here we only record when sound detected
+});
+)
+
+~buffer3.play;  //trigger multiple times
+
+Ndef(\automaticRecorder3).gui;
+Ndef(\automaticRecorder3).stop;
+```
+
+links
+--
+
+<https://www.youtube.com/watch?v=yRzsOOiJ_p4&list=PLPYzvS8A_rTaNDweXe6PX4CXSGq4iEWYC>
+
