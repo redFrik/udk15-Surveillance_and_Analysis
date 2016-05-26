@@ -13,9 +13,9 @@ dates
 - [ ] 05may: **NO CLASS** (holiday)
 - [x] [12may 14-16](https://github.com/redFrik/udk15-Surveillance_and_Analysis/tree/master/udk160512): basic processing
 - [x] [19may 14-16](https://github.com/redFrik/udk15-Surveillance_and_Analysis/tree/master/udk160519): basic supercollider
-- [ ] [26may 14-16](https://github.com/redFrik/udk15-Surveillance_and_Analysis/tree/master/udk160526): more processing
-- [ ] 02jun 14-16: more supercollider
-- [ ] 09jun 14-16: python
+- [x] [26may 14-16](https://github.com/redFrik/udk15-Surveillance_and_Analysis/tree/master/udk160526): more processing
+- [ ] 02jun 14-16: python
+- [ ] 09jun 14-16:
 - [ ] 16jun 14-16
 - [ ] 23jun 14-16
 - [ ] 30jun 14-16

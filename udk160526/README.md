@@ -269,7 +269,9 @@ void draw() {
 ```
 
 kinect
---
+==
+
+for the below to work you will need a kinect sensor.
 
 Daniel Shiffman - Processing and Kinect Tutorial <https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZMlWHdcy8hAGDy6IaoxUKf>
 
@@ -419,3 +421,31 @@ links
 using infra red camera and lights to find silhouette...
 <http://www.tmema.org/messa/diagrams/old/concert_2_screen/messa_optical_configurations.pdf> <https://www.youtube.com/watch?v=STRMcmj-gHc>
 
+for tracking hands...
+
+<http://leapmotion.com>
+
+bonus
+--
+
+color modes in processing.
+
+HSB= hue, saturation, brightness
+
+```cpp
+int cnt= 0;
+void setup() {
+    size(640, 480);
+    colorMode(HSB, 255);  //compare with this commented out (the default is RGB)
+}
+void draw() {
+    //because we set HSB mode instead of the default RGB
+    //the first value (our cnt) now controls hue instead
+    //or red
+    background(cnt, 255, 255);  //cycle through hue
+    cnt= cnt+1;
+    if(cnt==256) {
+        cnt= 0;
+    }
+}
+```
