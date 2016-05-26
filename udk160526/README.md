@@ -218,6 +218,56 @@ OSCdef(\avgflow, {|msg|
 )
 ```
 
+optical flow examples
+--
+
+<http://www.memo.tv/bodypaint/>
+
+```cpp
+//bodypaint remake
+import processing.video.*;
+import gab.opencv.*;
+
+Capture video;
+OpenCV opencv;
+
+int downscale= 4;  //try with 2, 4 and 8 for different resolutions
+float colorSpeed= 0.4;
+int trail= 4;  //0-255
+float thresh= 1;
+
+float hue= 0.0;
+void setup() {
+    size(640, 480);
+    video = new Capture(this, width/downscale, height/downscale);
+    video.start();
+    opencv= new OpenCV(this, video.width, video.height);
+    colorMode(HSB, 255);
+    background(0);
+    noStroke();
+}
+void captureEvent(Capture video) {
+    video.read();
+}
+void draw() {
+    fill(0, trail);
+    rect(0, 0, width, height);
+    hue= hue+colorSpeed;
+    fill(int(hue)%256, 255, 255);
+    opencv.loadImage(video);
+    opencv.calculateOpticalFlow();
+    for (int x= 0; x<opencv.width; x++) {
+        for (int y= 0; y<opencv.height; y++) {
+            PVector flow= opencv.getFlowAt(x, y);
+            float m= flow.mag();
+            if(m>thresh) {
+                rect(x*downscale, y*downscale, m-thresh, m-thresh);
+            }
+        }
+    }
+}
+```
+
 kinect
 --
 
@@ -283,15 +333,23 @@ skeleton tracking on osx...
 
 (from <https://github.com/Sensebloom> and <https://github.com/totakke/homebrew-openni>)
 
-`brew install openni`
-`brew tap totakke/openni`
-`brew install sensor-kinect`
-`brew install nite`
-`git clone https://github.com/Sensebloom/OSCeleton`
-`cd OSCeleton`
-`sudo ln -s /usr/local/Cellar/openni/1.5.7.10/include/ni /usr/include/ni`  #create a temp symlink
-`make`
-`sudo rm /usr/include/ni`  #remove temp symlink
+* `brew install openni`
+* `brew tap totakke/openni`
+* `brew install sensor-kinect`
+* `brew install nite`
+* `git clone https://github.com/Sensebloom/OSCeleton`
+* `cd OSCeleton`
+* `sudo ln -s /usr/local/Cellar/openni/1.5.7.10/include/ni /usr/include/ni`  #create a temp symlink
+* `make`
+* `sudo rm /usr/include/ni`  #remove temp symlink
 
 to start...
-`./osceleton -p 57120`  #start sending osc to supercollider
+
+* `./osceleton -p 57120`  #start sending osc to supercollider
+
+links
+--
+
+using infra red camera and lights to find silhouette...
+<http://www.tmema.org/messa/diagrams/old/concert_2_screen/messa_optical_configurations.pdf> <https://www.youtube.com/watch?v=STRMcmj-gHc>
+
