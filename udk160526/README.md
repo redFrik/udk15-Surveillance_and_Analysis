@@ -418,12 +418,11 @@ OSCdef(\lostuser, {|msg|
 links
 --
 
-using infra red camera and lights to find silhouette...
-<http://www.tmema.org/messa/diagrams/old/concert_2_screen/messa_optical_configurations.pdf> <https://www.youtube.com/watch?v=STRMcmj-gHc>
+more about kinect... <http://neurogami.com/presentations/KinectForArtists/>
 
-for tracking hands...
+using infra red camera and lights to find silhouette... <http://www.tmema.org/messa/diagrams/old/concert_2_screen/messa_optical_configurations.pdf> <https://www.youtube.com/watch?v=STRMcmj-gHc>
 
-<http://leapmotion.com>
+for tracking hands... <http://leapmotion.com>
 
 bonus
 --
