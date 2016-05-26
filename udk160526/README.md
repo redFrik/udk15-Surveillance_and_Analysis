@@ -38,7 +38,7 @@ void draw() {
 contours
 --
 
-removing background like above but also drawing the countour.
+removing background like above but also analyzing and drawing the countour.
 
 ```cpp
 import processing.video.*;
@@ -77,7 +77,7 @@ void draw() {
 movement detection
 --
 
-we can figure out the average movement in the picture by first removing the background and then calculate how many white pixels are left.
+we can figure out the average movement in the total picture by first removing the background and then calculate how many white pixels showing.
 
 in this example we also downsample to save on cpu and the resulting total is both displayed and sent to supercollider via osc.
 
@@ -147,8 +147,8 @@ OSCdef(\total, {|msg|
 optical flow
 --
 
-this example will analyse the 'flow' or direction of things moving in the camera image.
-then the average vector of that will be sent out to supercollider via osc.
+this example will analyse the 'flow' or direction of all things moving in the camera image.
+then the average of that will be sent out to supercollider via osc (as movement in x and y directions).
 
 ```cpp
 //average optical flow
@@ -326,6 +326,48 @@ install Synapse from <http://synapsekinect.tumblr.com>
 
 follow Eli Fieldsteel's SuperCollider Tutorial: 13. Xbox Kinect <https://www.youtube.com/watch?v=dbSTq_UsFK4>
 
+```
+s.boot;
+s.latency= 0.05;
+
+//very basic supercollider with synaps
+//make sure synapse is running, start this code and then go and stand in special 'skeleton' position
+(
+Ndef(\snd1, {|freq= 100, amp= 0, cf= 0.1|
+    BLowPass4.ar(Saw.ar(freq, amp), cf, 0.1).dup;
+}).play;
+Ndef(\snd2, {|freq= 100, amp= 0, cf= 0.1|
+    BLowPass4.ar(Saw.ar(freq, amp), cf, 0.1).dup;
+}).play;
+n= NetAddr("127.0.0.1", 12346);  //receive from synapse application
+OSCdef(\righthand, {|msg|
+    //msg.postln;  //debug
+    Ndef(\snd1).set(
+        \cf, msg[1].linexp(-1500, 1500, 50, 5000),  //x pos is about -1500 to 1500
+        \freq, msg[2].linexp(-800, 800, 50, 5000),  //y pos is about -800 to 800
+        \amp, msg[3].linexp(0, 4500, 1, 0.01)  //z pos is about 0 to 4500 - here mapped to amplitude
+    );
+}, '/righthand_pos_world', nil, 12345);
+OSCdef(\lefthand, {|msg|
+    //msg.postln;  //debug
+    Ndef(\snd2).set(
+        \cf, msg[1].linexp(-1500, 1500, 5000, 50),  //x pos is about -1500 to 1500
+        \freq, msg[2].linexp(-800, 800, 50, 5000),  //y pos is about -800 to 800
+        \amp, msg[3].linexp(0, 4500, 1, 0.01)  //z pos is about 0 to 4500 - here mapped to amplitude
+    );
+}, '/lefthand_pos_world', nil, 12345);
+r= Routine.run({
+    inf.do{
+        n.sendMsg("/righthand_trackjointpos", 2);
+        n.sendMsg("/lefthand_trackjointpos", 2);
+        2.wait;  //keep synapse tracking alive by sending msg every other second
+    };
+});
+)
+
+//cmd+. to stop
+```
+
 advanced kinect skeleton
 --
 
@@ -346,6 +388,30 @@ skeleton tracking on osx...
 to start...
 
 * `./osceleton -p 57120`  #start sending osc to supercollider
+
+```
+//supercollider code
+//this simple example demonstrates how to use a kinect
+//to count people in a (small) room and fade in/out sound accordingly
+OSCFunc.trace
+
+s.boot;
+s.latency= 0.05;
+
+(
+Ndef(\snd, {|user= 0|
+    SinOsc.ar([400, 404]+(user*100), 0, user.lagud(1, 5));
+}).play;
+OSCdef(\newuser, {|msg|
+    msg.postln;
+    Ndef(\snd).set(\user, 1);
+}, \new_user);
+OSCdef(\lostuser, {|msg|
+    msg.postln;
+    Ndef(\snd).set(\user, 0);
+}, \lost_user);
+)
+```
 
 links
 --
