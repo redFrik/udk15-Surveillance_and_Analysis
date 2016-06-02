@@ -5,13 +5,21 @@ open terminal and type `python`.
 
 play around.
 
+see previous python experiments... <https://github.com/redFrik/udk12-Back_to_basics/tree/master/udk141127>
+
 to exit type `quit()`.
 
-for the examples below we will need two python packages. install them by typing (in the terminal)...
+for the examples below we will need to install two python packages. type (in the terminal)...
 
-`easy_install pyosc psutil`  #on linux you probably need sudo first
+`easy_install pyosc psutil`
 
-or you can also install them with pip like this...
+if you get permission problems try `sudo easy_install pyosc psutil`
+
+on **osx** you might here be asked to install xcode command line tools.
+
+and on **linux** you might first also need to `sudo apt-get update` and `sudo apt-get install python-dev python-setuptools`
+
+or (a better way on both osx and linux assuming you have python-pip installed), you can also get them with pip like this...
 
 `pip install pyosc psutil`
 
@@ -19,6 +27,8 @@ cpu measurements
 --
 
 type `python` and then `import psutil`
+
+if you don't see any errors you can continue, else the psutil package didn't install properly. (try rebooting your mac if you had to install xcode.)
 
 now we can get data about what our computer is doing.
 
@@ -58,7 +68,7 @@ wifi signal strength
 
 <http://www.nearfield.org/2011/02/wifi-light-painting>
 
-on *osx* you can get data about your current wifi network using the following command in terminal...
+on **osx** you can get data about your current wifi network using the following command in terminal...
 
 `/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I`
 
@@ -68,7 +78,7 @@ and to perform a scan of nearby networks...
 
 (another way is to use the CoreWLAN framework. see the python code provided here `python rssi_objc_osx.py`)
 
-under *linux* use...
+under **linux** use...
 
 `iwconfig wlan0`
 
@@ -85,8 +95,8 @@ we can use the above commands in python and send the resulting wifi strength dat
 * make sure you download the code in this github directory (easiest if you go up one level and click 'clone or download' and then 'download zip')
 * now open and start the processing sketch `wifistatus.pde` (if problem make sure you have the OscP5 library installed)
 * open terminal and cd to the folder udk160526. e.g. `cd ~/Downloads/udk15-Surveillance_and_Analysis/udk160602`
-* then on *osx* type `python wifistatus_osx.py`
-* and on *linux* type `python wifistatus_linux.py`
+* then on **osx** type `python wifistatus_osx.py`
+* and on **linux** type `python wifistatus_linux.py`
 * you should see numbers in the upper left corner change and the green bargraph change according to your rssi.
 * last close the processing sketch and open `wifistatus.scd` in supercollider
 
@@ -94,8 +104,6 @@ we can use the above commands in python and send the resulting wifi strength dat
 
 links
 --
-
-previous python experiments... <https://github.com/redFrik/udk12-Back_to_basics/tree/master/udk141127>
 
 use opencv with python for advanced image analysis... <https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_tutorials.html>
 
