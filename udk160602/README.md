@@ -83,10 +83,10 @@ and to scan nerby networks...
 we can use the above commands in python and send the resulting wifi strength data to processing or supercollider via osc.
 
 * make sure you download the code in this github directory (easiest if you go up one level and click 'clone or download' and then 'download zip')
-* now open and start the processing sketch `wifistrength.pde` (if problem make sure you have the OscP5 library installed)
+* now open and start the processing sketch `wifistatus.pde` (if problem make sure you have the OscP5 library installed)
 * open terminal and cd to the folder udk160526. e.g. `cd ~/Downloads/udk15-Surveillance_and_Analysis/udk160602`
-* then on *osx* type `python wifistrength_osx.py`
-* and on *linux* type `python wifistrength_linux.py`
+* then on *osx* type `python wifistatus_osx.py`
+* and on *linux* type `python wifistatus_linux.py`
 * you should see numbers in the upper left corner change and the green bargraph change according to your rssi.
 * last close the processing sketch and open `wifistatus.scd` in supercollider
 

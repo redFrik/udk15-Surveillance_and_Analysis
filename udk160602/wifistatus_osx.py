@@ -1,19 +1,17 @@
 #osx only
 #make sure to install pyosc
-import objc
+import subprocess
 from OSC import OSCClient, OSCMessage, OSCClientError
 from time import sleep
 
 cli= OSCClient()
 cli.connect(('127.0.0.1', 12345))  #send address
 
-objc.loadBundle('CoreWLAN', bundle_path= '/System/Library/Frameworks/CoreWLAN.framework', module_globals= globals())
-print CWInterface.interfaceNames()
-interface= CWInterface.interfaceWithName_('en0')  #edit to match your network interface
-
 while True:
-  rssi= int(interface.rssi());
-  noise= int(interface.noise());
+  a= subprocess.Popen('/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I', shell=True, stdout=subprocess.PIPE).stdout.read()
+  a= a.split()
+  rssi= int(float(a[1]))
+  noise= int(float(a[5]))
   msg= OSCMessage()
   msg.setAddress('/wifi')
   msg.append(rssi)
