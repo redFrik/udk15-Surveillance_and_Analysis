@@ -36,6 +36,6 @@ while True:
     try:
       cli.send(msg)
     except OSCClientError:
-      print 'could not send to '+str(cli.client_address)
+      pass
     i= i+1
-  sleep(4)  #update rate
+  sleep(1)  #update rate
