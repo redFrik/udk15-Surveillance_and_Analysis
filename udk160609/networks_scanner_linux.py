@@ -7,12 +7,12 @@ from OSC import OSCClient, OSCMessage, OSCClientError
 from time import sleep
 
 cli= OSCClient()
-cli.connect(('192.168.1.2', 34567))  #send address
+cli.connect(('127.0.0.1', 34567))  #send address
 
 interface= 'wlan0'  #edit to match your network interface
 
 while True:
-  a= subprocess.Popen('iwlist wlan0 scanning | egrep "Address|Frequency|ESSID"', shell=True, stdout=subprocess.PIPE).stdout.read()
+  a= subprocess.Popen('iwlist '+interface+' scanning | egrep "Address|Frequency|ESSID"', shell=True, stdout=subprocess.PIPE).stdout.read()
   a= a.splitlines()
   b= []
   for i in range(len(a)):
