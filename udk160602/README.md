@@ -56,7 +56,7 @@ we can use the above commands in python and send the resulting cpu load data to 
 
 * make sure you download the code in this github directory (easiest if you go up one level and click 'clone or download' and then 'download zip')
 * now open and start the processing sketch `cpuloads.pde` (if problem make sure you have the OscP5 library installed)
-* open terminal and cd to the folder udk160526. e.g. `cd ~/Downloads/udk15-Surveillance_and_Analysis/udk160602`
+* open terminal and cd to the folder udk160602. e.g. `cd ~/Downloads/udk15-Surveillance_and_Analysis/udk160602`
 * then type `python cpuloads.py`
 * you should see numbers and rectangles change according to your cpu load.
 * last close the processing sketch and open `cpuloads.scd` in supercollider
@@ -94,7 +94,7 @@ we can use the above commands in python and send the resulting wifi strength dat
 
 * make sure you download the code in this github directory (easiest if you go up one level and click 'clone or download' and then 'download zip')
 * now open and start the processing sketch `wifistatus.pde` (if problem make sure you have the OscP5 library installed)
-* open terminal and cd to the folder udk160526. e.g. `cd ~/Downloads/udk15-Surveillance_and_Analysis/udk160602`
+* open terminal and cd to the folder udk160602. e.g. `cd ~/Downloads/udk15-Surveillance_and_Analysis/udk160602`
 * then on **osx** type `python wifistatus_osx.py`
 * and on **linux** type `python wifistatus_linux.py`
 * you should see numbers in the upper left corner change and the green bargraph change according to your rssi.

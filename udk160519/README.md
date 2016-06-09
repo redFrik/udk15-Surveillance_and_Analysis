@@ -218,7 +218,8 @@ Ndef(\automaticRecorder4, {|thresh= 0.09, time= 0.2, amp= 1, rate= 1|
 Ndef(\automaticRecorder4).gui;
 
 Ndef(\automaticRecorder4).stop;
-Ndef(\automaticRecorder4).clear;```
+Ndef(\automaticRecorder4).clear;
+```
 
 links
 --
