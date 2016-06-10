@@ -11,6 +11,41 @@ network scanner
 * if you have problems make sure you have the pyosc python package installed (see last week)
 * if it works you should see white text in processing
 
+faker
+--
+
+here we try out a python package called faker. see the docs: <http://faker.readthedocs.io/en/latest/>
+
+open terminal type:
+
+`sudo easy_install fake-factory`
+
+(or if you have pip installed `pip install fake-factory`)
+
+then start python...
+
+`python`
+
+`from faker import Faker`  #if installation above worked you should see no error
+`f= Faker()`  #create a new faker object
+`f.name()`  #return a name
+`f.name()`  #another one
+`f.name()`  #etc
+`f.address()`  #a fake address
+`f= Faker('de_DE')`  #create another object localized to germany
+`f.name()`  #should return a german name
+`print f.name()`  #pretty printing
+`print f.address()`  #pretty printing
+
+this last example will print out 100 fake name+addresses
+
+```python
+for i in range(100):
+    print f.name()
+    print f.address()
+    print '---------'
+```
+
 text
 --
 
@@ -95,7 +130,6 @@ void draw() {
 }
 ```
 
-
 ```
 //supercollider code...
 
@@ -160,6 +194,27 @@ Ndef(\mysnd, {|amp= 0, freq= 500|
 Ndef(\mysnd).clear
 OSCdef(\mouse).free
 ```
+
+advanced
+--
+
+using nmap to scan for computers and open ports on a network
+
+`brew install nmap` or for ***linux*** `sudo apt-get install nmap`
+
+list connected computers on your network:
+
+`nmap -sn 192.168.1.0/24 -oG - | awk '/Up$/{print $2, $3}'` #edit ip to be match your network root ip (.0)
+
+list connected computers on your network that have an open ssh port:
+
+`nmap -p 22 --open -sV 192.168.1.0-255` #take care to not run this on unknown/open networks
+
+list connected computers on your network that have supercollider running:
+
+`sudo nmap -p 57120 --open -sU 192.168.1.0/24 -oG - | awk '/Up$/{print $2, $3}'`
+
+now install python-nmap and try out the `discover.py` and `discover.scd` example
 
 links
 --
