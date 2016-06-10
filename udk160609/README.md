@@ -209,7 +209,7 @@ advanced
 
 using nmap to scan for computers and open ports on a network
 
-`brew install nmap` or for ***linux*** `sudo apt-get install nmap`
+`brew install nmap` or for **linux** `sudo apt-get install nmap`
 
 list connected computers on your network:
 
