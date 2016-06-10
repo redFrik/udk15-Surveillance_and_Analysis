@@ -26,18 +26,27 @@ then start python...
 
 `python`
 
-`from faker import Faker`  #if installation above worked you should see no error
-`f= Faker()`  #create a new faker object
-`f.name()`  #return a name
-`f.name()`  #another one
-`f.name()`  #etc
-`f.address()`  #a fake address
-`f= Faker('de_DE')`  #create another object localized to germany
-`f.name()`  #should return a german name
-`print f.name()`  #pretty printing
-`print f.address()`  #pretty printing
+now start typing the commands below. if installation above worked you should see no error and get fake name and addresses.
 
-this last example will print out 100 fake name+addresses
+```python
+from faker import Faker
+f= Faker()
+f.name()
+f.name()
+f.name()
+f.address()
+```
+
+create another object localized to germany. with `print` you get pretty printing.
+
+```python
+f= Faker('de_DE')
+f.name()
+print f.name()
+print f.address()
+```
+
+this last example will print out 100 fake name+addresses. note the indentation (tab).
 
 ```python
 for i in range(100):
