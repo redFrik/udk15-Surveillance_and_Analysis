@@ -4,7 +4,25 @@ more supercollider
 a tuned 'ringing' filter can be used to as a simple spectrum analyzer.
 
 ```
-s.boot;
+s.boot
+
+{BPF.ar(WhiteNoise.ar, 1500, 1)}.play
+
+//BPF= bandpass filter
+
+{Mix(BPF.ar(WhiteNoise.ar, [800, 900, 1200], 0.01))!2}.play
+
+{Impulse.ar(2)!2}.play
+
+{Mix(BPF.ar(Impulse.ar(2), [1800, 900, 1200], 0.01))*15!2}.play
+
+{Mix(BPF.ar(Impulse.ar([2, 2.1, 2.2, 3, 4]), [1800, 900, 1200, 5000, 500], 0.01))*15!2}.play
+
+{Mix(BPF.ar(SoundIn.ar, [1800, 900, 1200], 0.01))*15!2}.play
+
+{Mix(BPF.ar(DelayN.ar(SoundIn.ar, 5, 5), [1800, 900, 1200], 0.001))*20!2}.play
+
+{Mix(BPF.ar(DelayN.ar(SoundIn.ar, 2, 2), [1800, 900, 1200, 500, 600, 700]*MouseX.kr(0.01, 3, 1), 0.001))*20!2}.play
 
 (
 {
@@ -28,8 +46,6 @@ s.boot;
 }.play;
 )
 ```
-
-
 many ringing filters
 
 ```
@@ -209,6 +225,49 @@ void draw() {
     point(frameCount%width, map(cent, 100, 10000, 0, height));
     if (frameCount%width==0) {
         background(0);
+    }
+}
+```
+
+extra - 3d
+--
+
+install PeasyCam library for Processing and use this example with the spectrum graphics sc code above
+
+```cpp
+//click and drag the mouse
+import peasy.*;
+import oscP5.*;
+import netP5.*;
+OscP5 oscP5;
+PeasyCam cam;
+float data[]= new float[0];
+void setup() {
+    size(800, 600, P3D);
+    colorMode(HSB, 100);
+    cam= new PeasyCam(this, 500);
+    OscProperties properties= new OscProperties();
+    properties.setListeningPort(9000);  //osc receive port (from sc)
+    oscP5= new OscP5(this, properties);
+}
+void oscEvent(OscMessage msg) {
+    if (msg.checkAddrPattern("/toProcessing")) {
+    data= new float[msg.arguments().length];
+    for (int i= 0; i<msg.arguments().length; i++) {
+        data[i]= msg.get(i).floatValue();
+    }
+    }
+}
+void draw() {
+    background(0);
+    stroke(0);
+    for(int i= 0; i<data.length; i++) {
+        float a= i/float(data.length);
+        pushMatrix();
+        fill(a*100, 100, 100);
+        translate(0, a*height);
+        box(data[i]*width, height/data.length, 50);
+        popMatrix();
     }
 }
 ```
