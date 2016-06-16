@@ -280,10 +280,10 @@ markov chains -> guided randomness
 //very simple markov chain example
 
 float[][] arr= {  //weights
-{0.1, 0.7, 0.1, 0.1},  //each line should add up to 1.0
-{0.1, 0.1, 0.7, 0.1},  //each line is a state and descibes the
-{0.2, 0.1, 0.1, 0.6},  //likelyhood of going to another state
-{0.6, 0.2, 0.1, 0.1}   //so for state 3 (this line) it's 60% of going back to state 0
+    {0.1, 0.7, 0.1, 0.1},  //each line should add up to 1.0
+    {0.1, 0.1, 0.7, 0.1},  //each line is a state and descibes the
+    {0.2, 0.1, 0.1, 0.6},  //likelyhood of going to another state
+    {0.7, 0.2, 0.1, 0.0}   //so state 3 (this line) has 60% chance of going back to state 0, 20% going to state 1, 10% to state 2 and 0% chance of staying put at state 3
 };
 
 int state= 0;  //starting state
@@ -321,10 +321,108 @@ void draw() {
 }
 ```
 
-works really well with generating natural looking text. also you can analyze a text/sound/gesture etc and get the table of weights and states from that. then regenerate a similar text/sound/gesture that's similar but not always the same.
+works really well for generating natural texts. also you can analyze a text/sound/gesture/picture etc and get the table of weights from that. then regenerate a similar text/sound/gesture/picture that's very similar but not always the same. variations on a theme.
 
 read more...
 
 <https://en.wikipedia.org/wiki/Markov_chain>
 
 <http://projects.haykranen.nl/markov/demo/>
+
+and a similar example in supercollider...
+
+```
+(
+//simple markov chain in supercollider
+//here each state is represented as a note
+var arr= [  //weights
+    [0.1, 0.7, 0.1, 0.1],
+    [0.1, 0.1, 0.7, 0.1],
+    [0.2, 0.1, 0.1, 0.6],
+    [0.6, 0.2, 0.1, 0.1]
+];
+var synth= {|freq= 400, t_trig= 0| SinOsc.ar(freq, 0, 0.5)*EnvGen.ar(Env.perc, t_trig)!2}.play;
+var state= 0;  //starting state
+Routine.run({
+    inf.do{
+        var weights= arr[state];  //find the weights for current state
+        var rand= 1.0.rand;  //pick a random number 0.0-1.0
+        var sum= 0.0;  //this will step-by-step add up to rand
+        state= weights.detectIndex{|w|
+            sum= sum+w;
+            sum>rand;
+        };
+        synth.set(\t_trig, 1, \freq, state*100+300);  //map state to freq and trigger sound
+        0.5.wait;
+    };
+});
+)
+```
+
+try changing the weights in arr
+
+```
+(
+//five states example
+//with a tendency to get 'stuck' at the top note (state= 4)
+var arr= [  //weights
+    [0.05, 0.7, 0.1, 0.1, 0.05],  //state 0
+    [0.1, 0.1, 0.7, 0.05, 0.05],
+    [0.2, 0.1, 0.1, 0.5, 0.1],
+    [0.6, 0.2, 0.1, 0.05, 0.05],
+    [0.03, 0.03, 0.02, 0.02, 0.9]  //state 4
+];
+var synth= {|freq= 400, t_trig= 0| SinOsc.ar(freq, 0, 0.5)*EnvGen.ar(Env.perc, t_trig)!2}.play;
+var state= 0;  //starting state
+Routine.run({
+    inf.do{
+        var weights= arr[state];  //find the weights for current state
+        var rand= 1.0.rand;  //pick a random number 0.0-1.0
+        var sum= 0.0;  //this will step-by-step add up to rand
+        state= weights.detectIndex{|w|
+            sum= sum+w;
+            sum>rand;
+        };
+        synth.set(\t_trig, 1, \freq, state*100+300);  //map state to freq and trigger sound
+        0.1.wait;
+    };
+});
+)
+```
+
+and a last example showing how to rewrite the weights and number of states while it is running...
+
+```
+(
+//12 states random weights to start with
+var synth= {|freq= 400, t_trig= 0| SinOsc.ar(freq, 0, 0.5)*EnvGen.ar(Env.perc, t_trig)!2}.play;
+~state= 0;
+~arr= Array.fill(12, {Array.fill(12, {[0.9, 0.1].choose}).normalizeSum}).postln;
+Routine.run({
+    inf.do{
+        var weights= ~arr[~state];  //find the weights for current state
+        var rand= 1.0.rand;  //pick a random number 0.0-1.0
+        var sum= 0.0;  //this will step-by-step add up to rand
+        ~state= weights.detectIndex{|w|
+            sum= sum+w;
+            sum>rand;
+        };
+        synth.set(\t_trig, 1, \freq, ~state*100+300);  //map state to freq and trigger sound
+        0.1.wait;
+    };
+});
+)
+
+//run this while it is playing
+(
+~state= 0;
+~arr= Array.fill(4, {Array.fill(4, {[0.9, 0.1].choose}).normalizeSum}).postln;
+)
+
+(
+~state= 0;
+~arr= Array.fill(8, {Array.fill(8, {[10, 0.1, 0].choose}).normalizeSum}).postln;
+)
+```
+
+the method `normalizeSum` just makes sure all the weights add up to 1.0
