@@ -34,7 +34,6 @@ s.boot
 }.play;
 )
 
-
 //same but with mouse control
 (
 {
@@ -45,10 +44,8 @@ s.boot
     ring.dup(2);
 }.play;
 )
-```
-many ringing filters
 
-```
+//many ringing filters
 (
 {
     var freqs= [400, 500, 600, 700]*MouseX.kr(0.5, 3, 1);  //try changing/adding frequencies
@@ -170,6 +167,8 @@ void draw() {
 more
 --
 
+this example will analyze sound in supercollider and send over three parameters to processing. the three parameters are freqiency (pitch), amplitude (volume) and centroid (timbre or how 'noisy' the signal is)
+
 supercollider code:
 
 ```
@@ -271,3 +270,61 @@ void draw() {
     }
 }
 ```
+
+markov chains
+--
+
+markov chains -> guided randomness
+
+```cpp
+//very simple markov chain example
+
+float[][] arr= {  //weights
+{0.1, 0.7, 0.1, 0.1},  //each line should add up to 1.0
+{0.1, 0.1, 0.7, 0.1},  //each line is a state and descibes the
+{0.2, 0.1, 0.1, 0.6},  //likelyhood of going to another state
+{0.6, 0.2, 0.1, 0.1}   //so for state 3 (this line) it's 60% of going back to state 0
+};
+
+int state= 0;  //starting state
+
+void setup() {
+    size(640, 480);
+    frameRate(2);
+}
+
+void draw() {
+    background(0);
+
+    //--draw all states as outlines
+    noFill();
+    stroke(255);
+    for(int i= 0; i<arr.length; i++) {
+        rect(i*100+100, 50, 20, 20);
+    }
+
+    //--fill current state
+    fill(255);
+    rect(state*100+100, 50, 20, 20);
+
+    //--pick new state
+    float[] weights= arr[state];  //find the weights for current state
+    float rand= random(1.0);  //pick a random number 0.0-1.0
+    float sum= 0.0;  //this will step-by-step add up to rand
+    for(int i= 0; i<weights.length; i++) {
+        sum= sum+weights[i];
+        if(sum>rand) {
+            state= i;  //sum added up to greater than rand and we found the new state 
+            break;
+        }
+    }
+}
+```
+
+works really well with generating natural looking text. also you can analyze a text/sound/gesture etc and get the table of weights and states from that. then regenerate a similar text/sound/gesture that's similar but not always the same.
+
+read more...
+
+<https://en.wikipedia.org/wiki/Markov_chain>
+
+<http://projects.haykranen.nl/markov/demo/>
