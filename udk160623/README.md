@@ -10,7 +10,7 @@ Ndef(\saw, { Saw.ar([400, 400]) }).play;  //no detuning - same frequency in left
 
 //detune
 Ndef(\saw, { Saw.ar([400, 404]) }).play;  //4 Hz difference
-Ndef(\saw, { Saw.ar([400, 402]) }).play;
+Ndef(\saw, { Saw.ar([400, 402]) }).play;  //2 Hz difference
 Ndef(\saw, { Saw.ar([400, 400.2]) }).play;
 Ndef(\saw, { Saw.ar([400, 800.1]) }).play;  //detune also works over octaves
 Ndef(\saw, { Saw.ar([400, 600.1]) }).play;  //and other intervals
@@ -147,7 +147,7 @@ void draw() {
 }
 ```
 
-also try adding `noSmooth();` in setup to turn off anti-aliasing. it will give a more 'pixely' effect that often works well with these types of interferensens.
+also try adding `noSmooth();` in setup to turn off anti-aliasing. it will give a more 'pixely' effect that often works well with these types of interferences.
 
 rotate...
 
