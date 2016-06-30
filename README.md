@@ -18,7 +18,7 @@ dates
 - [x] [09jun 14-16](https://github.com/redFrik/udk15-Surveillance_and_Analysis/tree/master/udk160609): more python
 - [x] [16jun 14-16](https://github.com/redFrik/udk15-Surveillance_and_Analysis/tree/master/udk160616): more supercollider
 - [x] [23jun 14-16](https://github.com/redFrik/udk15-Surveillance_and_Analysis/tree/master/udk160623): supercollider and processing
-- [ ] 30jun 14-16
+- [ ] [30jun 14-16](https://github.com/redFrik/udk15-Surveillance_and_Analysis/tree/master/udk160630): webcams
 - [ ] 07jul 14-16
 - [ ] 14jul 14-16
 - [ ] 21jul 14-16
