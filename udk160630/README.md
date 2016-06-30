@@ -32,6 +32,40 @@ shows you what the raw ip of the camera is and what you should copy: http://93.1
 
 note that not all cameras will work within processing.
 
+```cpp
+//opencv with ipcapture
+import gab.opencv.*;
+import ipcapture.*;
+
+IPCapture video;
+OpenCV opencv;
+
+void setup() {
+    size(640, 480);
+    video = new IPCapture(this, "http://109.190.32.217:82/axis-cgi/mjpg/video.cgi?camera=&amp;resolution=640x480", "", "");
+    video.start();
+    opencv= new OpenCV(this, video.width, video.height);
+    opencv.gray();
+    noFill();
+}
+void draw() {
+    if (video.isAvailable()) {
+        video.read();
+        opencv.threshold(int(map(mouseX, 0, width, 0, 100)));  //threshold mousex
+        opencv.loadImage(video);
+        image(video, 0, 0);
+        stroke(0, 255, 0);
+        for (Contour contour : opencv.findContours(true, true)) {
+            beginShape();
+            for (PVector point : contour.getPolygonApproximation().getPoints()) {
+                vertex(point.x, point.y);
+            }
+            endShape();
+        }
+    }
+}
+```
+
 setting up your own cam
 --
 
