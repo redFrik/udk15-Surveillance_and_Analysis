@@ -32,6 +32,93 @@ shows you what the raw ip of the camera is and what you should copy: http://93.1
 
 note that not all cameras will work within processing.
 
+multiple cameras...
+
+```cpp
+import ipcapture.*;
+IPCapture cam, cam2, cam3, cam4;
+void setup() {
+    size(640, 480);
+    cam = new IPCapture(this, "http://109.190.32.217:82/axis-cgi/mjpg/video.cgi?camera=&amp;resolution=640x480", "", "");
+    cam2 = new IPCapture(this, "http://93.165.142.237:80/mjpg/video.mjpg", "", "");
+    cam3 = new IPCapture(this, "http://81.12.190.218:80/cgi-bin/camera?resolution=640&amp;amp;quality=1&amp;amp;Language=0&amp;amp;1467291044", "", "");
+    cam4 = new IPCapture(this, "http://209.54.68.94:82/cgi-bin/camera?resolution=640&amp;amp;quality=1&amp;amp;Language=0&amp;amp;1467291257", "", "");
+    cam.start();
+    cam2.start();
+    cam3. start();
+    cam4. start();
+}
+void draw() {
+    if (cam.isAvailable()) {
+        cam.read();
+    }
+    if (cam2.isAvailable()) {
+        cam2.read();
+    }
+    if (cam3.isAvailable()) {
+        cam3.read();
+    }
+    if (cam4.isAvailable()) {
+        cam4.read();
+    }
+    cam.filter(THRESHOLD, 0.3);
+    cam2.filter(THRESHOLD, 0.3);
+    cam3.filter(THRESHOLD, 0.3);
+    cam4.filter(THRESHOLD, 0.3);
+    image(cam, 0, 0, 320, 240);
+    image(cam2, 320, 0, 320, 240);
+    image(cam3, 0, 240, 320, 240);
+    image(cam4, 320, 240, 320, 240);
+}
+```
+
+recording to disk...
+
+```cpp
+import ipcapture.*;
+IPCapture cam;
+
+void setup() {
+    size(640, 480);
+    cam = new IPCapture(this, "http://109.190.32.217:82/axis-cgi/mjpg/video.cgi?camera=&amp;resolution=640x480", "", "");
+    cam.start();
+}
+void draw() {
+    if (cam.isAvailable()) {
+        cam.read();
+        image(cam, 0, 0);
+        if (mousePressed) {  //click and hold mouse to record 
+            saveFrame();
+        }
+    }
+}
+```
+
+then select 'Show Sketch Folder' (cmd+k) to get to the all recorded images. and under Tools menu use 'Movie Maker' to turn them into a movie.
+
+playing with filter...
+
+```cpp
+import ipcapture.*;
+IPCapture cam;
+
+void setup() {
+    size(640, 480);
+    cam = new IPCapture(this, "http://109.190.32.217:82/axis-cgi/mjpg/video.cgi?camera=&amp;resolution=640x480", "", "");
+    cam.start();
+}
+void draw() {
+    if (cam.isAvailable()) {
+        cam.read();
+        cam.filter(THRESHOLD, map(mouseX, 0, width, 0, 1));  //mouse set threshold
+        tint(0, 255, 0);
+        image(cam, 0, 0);
+    }
+}
+```
+
+using opencv together with ip cameras...
+
 ```cpp
 //opencv with ipcapture
 import gab.opencv.*;
@@ -62,6 +149,30 @@ void draw() {
             }
             endShape();
         }
+    }
+}
+```
+
+using your own webcamera...
+
+```cpp
+import processing.video.*;
+
+Capture cam;
+
+void setup() {
+    size(640, 480);
+    println(Capture.list());
+    cam= new Capture(this, width, height);
+    cam.start();
+}
+void draw() {
+    if (cam.available()) {
+        cam.read();
+        cam.filter(ERODE);
+        cam.filter(ERODE);
+        cam.filter(ERODE);
+        image(cam, 0, 0);
     }
 }
 ```
@@ -97,3 +208,8 @@ sudo service motion start
 ```
 
 now test it by browsing to port 8081 on your rpi (e.g. http://192.168.1.2:8081)
+
+links
+--
+
+Eyes of Laura, Janet Cardiff, 2004 <http://www.docam.ca/en/case-studies/eyes-of-laura-j-cardiff.html>
