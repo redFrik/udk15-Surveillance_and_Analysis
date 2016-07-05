@@ -19,7 +19,7 @@ dates
 - [x] [16jun 14-16](https://github.com/redFrik/udk15-Surveillance_and_Analysis/tree/master/udk160616): more supercollider
 - [x] [23jun 14-16](https://github.com/redFrik/udk15-Surveillance_and_Analysis/tree/master/udk160623): supercollider and processing
 - [x] [30jun 14-16](https://github.com/redFrik/udk15-Surveillance_and_Analysis/tree/master/udk160630): webcams
-- [ ] 07jul 14-16
+- [ ] [07jul 14-16](https://github.com/redFrik/udk15-Surveillance_and_Analysis/tree/master/udk160707): sdr
 - [ ] 14jul 14-16
 - [ ] 21jul 14-16
 

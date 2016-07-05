@@ -1,6 +1,8 @@
 more processing
 --------------------
 
+very good article about computer vision: <http://www.flong.com/texts/essays/essay_cvad/>
+
 background removal
 --
 
