@@ -9,11 +9,11 @@ software defined radio
 
 web applications:
 
-<http://websdr.org>
+<http://websdr.org> here you can find some free online radios to use. for example <http://dj3le.spdns.de:8901>
 
-here you can find some free online radios to use. for example <http://dj3le.spdns.de:8901>
+<http://sdr.hu>
 
-(see under cubic below on how to get the sound into supercollider)
+(use soundflower to get the sound into supercollider - see under #cubic below)
 
 gui applications:
 
