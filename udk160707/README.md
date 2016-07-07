@@ -5,7 +5,15 @@ software defined radio
 
 <http://www.rtl-sdr.com/about-rtl-sdr/>
 
-<https://dolske.wordpress.com/2014/03/25/hacks-all-the-way-down/>
+<https://dolske.wordpress.com/2014/03/25/hacks-all-the-way-down/> (read the long list of possibilities)
+
+web applications:
+
+<http://websdr.org>
+
+here you can find some free online radios to use. for example <http://dj3le.spdns.de:8901>
+
+(see under cubic below on how to get the sound into supercollider)
 
 gui applications:
 
@@ -50,3 +58,5 @@ to start it i used...
 then open a browser and go to rpi's ip on port 8088.  e.g. `http://192.168.1.3:8088`
 
 you can also install in on osx following the instructions here: <http://www.mactopics.de/2016/03/07/ads-b-dump1090-auf-os-x-el-capitan-installieren/>
+
+on osx start it from terminal with `./dump1090 --interactive --net`
