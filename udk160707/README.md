@@ -1,11 +1,15 @@
 sdr
 --
 
-software defined radio
+software defined radio:
 
 <http://www.rtl-sdr.com/about-rtl-sdr/>
 
 <https://dolske.wordpress.com/2014/03/25/hacks-all-the-way-down/> (read the long list of possibilities)
+
+radio spectrum:
+
+see the table of frequencies here... <https://en.wikipedia.org/wiki/Radio_spectrum>
 
 web applications:
 
@@ -13,7 +17,7 @@ web applications:
 
 <http://sdr.hu>
 
-(use soundflower to get the sound into supercollider - see under #cubic below)
+(use soundflower to get the sound into supercollider - see under [cubic](#cubic) below)
 
 gui applications:
 
@@ -60,3 +64,14 @@ then open a browser and go to rpi's ip on port 8088.  e.g. `http://192.168.1.3:8
 you can also install in on osx following the instructions here: <http://www.mactopics.de/2016/03/07/ads-b-dump1090-auf-os-x-el-capitan-installieren/>
 
 on osx start it from terminal with `./dump1090 --interactive --net`
+
+links
+--
+
+some topics we discussed...
+
+<http://danieltemkin.com/Tutorials> glitch tutorials
+
+<http://interface.khm.de/index.php/lab/interfaces-advanced/radio-signal-strength-sensor/>
+
+<http://blog.riyas.org/2014/06/a-simple-24ghz-spectrum-analyser-arduino-lcd-shield.html>
