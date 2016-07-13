@@ -20,8 +20,8 @@ dates
 - [x] [23jun 14-16](https://github.com/redFrik/udk15-Surveillance_and_Analysis/tree/master/udk160623): supercollider and processing
 - [x] [30jun 14-16](https://github.com/redFrik/udk15-Surveillance_and_Analysis/tree/master/udk160630): webcams
 - [x] [07jul 14-16](https://github.com/redFrik/udk15-Surveillance_and_Analysis/tree/master/udk160707): sdr
-- [ ] 14jul 14-16
-- [ ] 21jul 14-16
+- [ ] 14jul 14-16: own projects
+- [ ] 21jul 14-16: own projects
 
 links to previous semesters... <http://redfrik.github.io/udk00-Audiovisual_Programming/>
 
