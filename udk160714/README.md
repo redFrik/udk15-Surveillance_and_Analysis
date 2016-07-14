@@ -94,7 +94,7 @@ python
 
 how to read a string from a textfile:
 
-```
+```python
 nano test.txt  #write something in there and press ctrl+x to save and quit
 python  #to start python
 with open("test.txt", "r") as f:
@@ -115,3 +115,5 @@ links
 --
 
 music and storytelling: <http://www.laurieanderson.com/gallery/#video>
+
+recommended processing and supercollider tutorials: <http://funprogramming.org>
