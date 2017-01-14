@@ -6,7 +6,7 @@ various questions and examples that came up in class...
 supercollider
 --
 
-```
+```supercollider
 //mouse area
 
 //how to detect if mouse is inside a rectangle on the screen
@@ -22,7 +22,7 @@ supercollider
 )
 ```
 
-```
+```supercollider
 //mouse delta
 
 //use rate of change (mouse speed) to control frequency
@@ -64,7 +64,7 @@ supercollider
 )
 ```
 
-```
+```supercollider
 //six channel output
 
 s.options.numChannels= 6;

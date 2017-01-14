@@ -122,7 +122,7 @@ void sendOscData(float x, float y) {
 
 supercollider code:
 
-```
+```supercollider
 //test
 (
 OSCdef(\flow, {|msg| msg.postln}, \flow);
@@ -177,7 +177,7 @@ but you should also be able to grab the project and run it under windows+linux i
 
 the default output port is 8338. so to listen to it in supercollider do something like this...
 
-```
+```supercollider
 OSCdef(\gesture_eye_right, {|msg| msg.postln}, '/gesture/eye/right', recvPort:8338)
 OSCdef(\gesture_eyebrow_left, {|msg| msg.postln}, '/gesture/eyebrow/left', recvPort:8338)
 OSCdef(\gesture_eyebrow_right, {|msg| msg.postln}, '/gesture/eyebrow/right', recvPort:8338)

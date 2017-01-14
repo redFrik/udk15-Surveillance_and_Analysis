@@ -3,7 +3,7 @@ supercollider and processing
 
 detuned oscillators...
 
-```
+```supercollider
 s.boot
 
 Ndef(\saw, { Saw.ar([400, 400]) }).play;  //no detuning - same frequency in left and right speaker
@@ -18,7 +18,7 @@ Ndef(\saw, { Saw.ar([400, 600.1]) }).play;  //and other intervals
 drone
 --
 
-```
+```supercollider
 //supercollider code
 s.boot;
 
@@ -67,7 +67,7 @@ void draw() {
 more drones
 --
 
-```
+```supercollider
 //op-art
 //drone
 

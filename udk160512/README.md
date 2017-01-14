@@ -273,7 +273,7 @@ void sendOscData(float x, float y, float tx, float ty) {
 
 and then in supercollider run this...
 
-```
+```supercollider
 //sound
 (
 s.waitForBoot{

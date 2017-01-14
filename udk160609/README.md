@@ -139,7 +139,7 @@ void draw() {
 }
 ```
 
-```
+```supercollider
 //supercollider code...
 
 //example1 - plain synthdef

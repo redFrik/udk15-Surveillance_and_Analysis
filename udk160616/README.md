@@ -3,7 +3,7 @@ more supercollider
 
 a tuned 'ringing' filter can be used to as a simple spectrum analyzer.
 
-```
+```supercollider
 s.boot
 
 {BPF.ar(WhiteNoise.ar, 1500, 1)}.play
@@ -62,7 +62,7 @@ spectrum graphics
 
 supercollider code:
 
-```
+```supercollider
 (
 var n= NetAddr("127.0.0.1", 9000);
 {
@@ -119,7 +119,7 @@ pitch tracking
 
 supercollider code:
 
-```
+```supercollider
 (
 var n= NetAddr("127.0.0.1", 9000);
 {
@@ -171,7 +171,7 @@ this example will analyze sound in supercollider and send over three parameters 
 
 supercollider code:
 
-```
+```supercollider
 (
 var n= NetAddr("127.0.0.1", 9000);
 {
@@ -331,7 +331,7 @@ read more...
 
 and a similar example in supercollider...
 
-```
+```supercollider
 (
 //simple markov chain in supercollider
 //here each state is represented as a note
@@ -361,7 +361,7 @@ Routine.run({
 
 try changing the weights in arr
 
-```
+```supercollider
 (
 //five states example
 //with a tendency to get 'stuck' at the top note (state= 4)
@@ -392,7 +392,7 @@ Routine.run({
 
 and a last example showing how to rewrite the weights and number of states while it is running...
 
-```
+```supercollider
 (
 //12 states random weights to start with
 var synth= {|freq= 400, t_trig= 0| SinOsc.ar(freq, 0, 0.5)*EnvGen.ar(Env.perc, t_trig)!2}.play;

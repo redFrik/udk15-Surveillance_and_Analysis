@@ -130,7 +130,7 @@ void sendOsc(long t) {
 }
 ```
 
-```
+```supercollider
 //supercollider code for total movement
 s.boot;
 s.latency= 0.05;
@@ -203,7 +203,7 @@ void sendOsc(float x, float y) {
 }
 ```
 
-```
+```supercollider
 //supercollider code for average optical flow
 s.boot;
 s.latency= 0.05;
@@ -330,7 +330,7 @@ install Synapse from <http://synapsekinect.tumblr.com>
 
 follow Eli Fieldsteel's SuperCollider Tutorial: 13. Xbox Kinect <https://www.youtube.com/watch?v=dbSTq_UsFK4>
 
-```
+```supercollider
 s.boot;
 s.latency= 0.05;
 
@@ -393,7 +393,7 @@ to start...
 
 * `./osceleton -p 57120`  #start sending osc to supercollider
 
-```
+```supercollider
 //supercollider code
 //this simple example demonstrates how to use a kinect
 //to count people in a (small) room and fade in/out sound accordingly

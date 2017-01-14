@@ -188,7 +188,7 @@ requirements:
 
 follow the instructions here... <https://pimylifeup.com/raspberry-pi-webcam-server/>
 
-```
+```bash
 sudo apt-get update
 sudo apt-get upgrade
 lsusb #check to see that the usb webcamera is there

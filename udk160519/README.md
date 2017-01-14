@@ -4,7 +4,7 @@ basic supercollider
 this assumes you have downloaded and installed supercollider from <http://supercollider.github.io/download>.
 
 
-```
+```supercollider
 s.boot  //you always need to run this to make sound
 
 "hello"
@@ -46,7 +46,7 @@ cmd+m  //to show level meters
 examples
 --
 
-```
+```supercollider
 (
 //amplitude tracking
 //this example tracks amplitude around 'freq' hz and play a sine for 'dur' seconds
@@ -65,7 +65,7 @@ Ndef(\atrack).stop;
 Ndef(\atrack).clear;
 ```
 
-```
+```supercollider
 (
 //pitch tracking
 //this example tracks if pitch matches 'freq' hz and if so plays a sine
@@ -86,7 +86,7 @@ Ndef(\ptrack).stop;
 Ndef(\ptrack).clear;
 ```
 
-```
+```supercollider
 (
 //timbre tracking
 //track how 'clean' the input sound is.  try whistle vs blow (sine vs noise)
@@ -116,7 +116,7 @@ Ndef(\ttrack2).stop;
 Ndef(\ttrack2).clear;
 ```
 
-```
+```supercollider
 //--detect sound
 (
 Ndef(\onOff, {|thresh= 0.09, time= 0.2, amp= 1|
@@ -132,7 +132,7 @@ Ndef(\onOff).stop;
 Ndef(\onOff).clear;
 ```
 
-```
+```supercollider
 //--detector with recorder - miniature i'm sitting in a room
 ~buffer= Buffer.alloc(s, 44100*3);  //make a single three seconds long buffer
 
@@ -153,7 +153,7 @@ Ndef(\automaticRecorder, {|thresh= 0.09, time= 0.2, amp= 1|
 ~buffer.write("~/Desktop/mybuffer.wav".standardizePath); //save last recording to desktop
 ```
 
-```
+```supercollider
 ~buffer2= Buffer.alloc(s, 44100*3);  //make a single three seconds long buffer
 
 //detector with recorder and playback
@@ -175,7 +175,7 @@ Ndef(\automaticRecorder2).stop;
 Ndef(\automaticRecorder2).clear;
 ```
 
-```
+```supercollider
 ~buffer3= Buffer.alloc(s, 44100*3);  //make a single three seconds long buffer
 
 //detector used to fill up a buffer
@@ -199,7 +199,7 @@ Ndef(\automaticRecorder3).stop;
 Ndef(\automaticRecorder3).clear;
 ```
 
-```
+```supercollider
 ~buffer4= Buffer.alloc(s, 44100*3);  //make a single three seconds long buffer
 
 //same as v3 but with playback
