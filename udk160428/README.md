@@ -1,21 +1,21 @@
 introduction and overview
 --------------------
 
-* links to previous semesters... <http://redfrik.github.io/udk00-Audiovisual_Programming/>
+* links to previous semesters... <https://redfrik.github.io/udk00-Audiovisual_Programming/>
 * and dates + times for this course... <https://github.com/redFrik/udk15-Surveillance_and_Analysis> <-save this page
 
 course software
 --
 
-* [SuperCollider](http://supercollider.github.io/download.html)
-* [Processing](http://processing.org)
+* [SuperCollider](https://supercollider.github.io/download.html)
+* [Processing](https://processing.org)
 * [Python](https://www.python.org)
-* and perhaps some other programs like [Arduino](http://www.arduino.cc) and [Audacity](http://audacityteam.org)
+* and perhaps some other programs like [Arduino](https://www.arduino.cc) and [Audacity](https://audacityteam.org)
 
 processing
 --
 
-first download and install processing 3 from <http://processing.org>.
+first download and install processing 3 from <https://processing.org>.
 then open sketch / import library / add library and install the following three libraries...
 
 * Video

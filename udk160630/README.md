@@ -22,7 +22,7 @@ void draw() {
 }
 ```
 
-find more open cameras here... <http://www.insecam.org>
+find more open cameras here... <https://www.insecam.org>
 
 to access the raw url you can control click the camera, select 'inspect' and then figure out the ip by looking at the img html tag. or select view source in your webbrowser and search for the url.
 
@@ -212,4 +212,4 @@ now test it by browsing to port 8081 on your rpi (e.g. http://192.168.1.2:8081)
 links
 --
 
-Eyes of Laura, Janet Cardiff, 2004 <http://www.docam.ca/en/case-studies/eyes-of-laura-j-cardiff.html>
+Eyes of Laura, Janet Cardiff, 2004 <https://www.docam.ca/en/case-studies/eyes-of-laura-j-cardiff.html>

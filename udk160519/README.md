@@ -1,7 +1,7 @@
 basic supercollider
 --------------------
 
-this assumes you have downloaded and installed supercollider from <http://supercollider.github.io/download>.
+this assumes you have downloaded and installed supercollider from <https://supercollider.github.io/download>.
 
 
 ```supercollider

@@ -1,7 +1,7 @@
 basic processing
 --------------------
 
-this assumes you have downloaded and installed processing 3 from <http://processing.org>.
+this assumes you have downloaded and installed processing 3 from <https://processing.org>.
 and also installed the following three processing libraries...
 
 * Video
@@ -136,7 +136,7 @@ and then take dilate away and add some `opencv.erode();` instead
 
 note that the order in which you apply these filters matter. e.g. blurring and then eroding is different from eroding and then blurring.
 
-now see <http://atduskgreg.github.io/opencv-processing/reference/> - click on OpenCV. read about the different methods and try out some of them.
+now see <https://atduskgreg.github.io/opencv-processing/reference/> - click on OpenCV. read about the different methods and try out some of them.
 
 preview
 --

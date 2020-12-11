@@ -66,7 +66,7 @@ we can use the above commands in python and send the resulting cpu load data to 
 wifi signal strength
 --
 
-<http://www.nearfield.org/2011/02/wifi-light-painting>
+<https://web.archive.org/web/20160703075932/http://www.nearfield.org/2011/02/wifi-light-painting>
 
 on **osx** you can get data about your current wifi network using the following command in terminal...
 
@@ -107,4 +107,4 @@ links
 
 use opencv with python for advanced image analysis... <https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_tutorials.html>
 
-more on linux wifi... <http://www.cyberciti.biz/tips/linux-find-out-wireless-network-speed-signal-strength.html>
+more on linux wifi... <https://www.cyberciti.biz/tips/linux-find-out-wireless-network-speed-signal-strength.html>

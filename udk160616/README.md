@@ -327,7 +327,7 @@ read more...
 
 <https://en.wikipedia.org/wiki/Markov_chain>
 
-<http://projects.haykranen.nl/markov/demo/>
+<https://projects.haykranen.nl/markov/demo/>
 
 and a similar example in supercollider...
 

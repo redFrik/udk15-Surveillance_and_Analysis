@@ -14,7 +14,7 @@ network scanner
 faker
 --
 
-here we try out a python package called faker. see the docs: <http://faker.readthedocs.io/en/latest/>
+here we try out a python package called faker. see the docs: <https://faker.readthedocs.io/en/latest/>
 
 open terminal type:
 
@@ -228,6 +228,6 @@ now install python-nmap and try out the `discover.py` and `discover.scd` example
 links
 --
 
-<https://saxenarajat99.wordpress.com/2015/01/27/nmap-tutorial/>
+<https://web.archive.org/web/20160707035125/https://saxenarajat99.wordpress.com/2015/01/27/nmap-tutorial/>
 
 <https://github.com/vinta/awesome-python>

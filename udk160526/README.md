@@ -1,7 +1,7 @@
 more processing
 --------------------
 
-very good article about computer vision: <http://www.flong.com/texts/essays/essay_cvad/>
+very good article about computer vision: <http://www.flong.com/archive/texts/essays/essay_cvad/index.html>
 
 background removal
 --
@@ -223,7 +223,7 @@ OSCdef(\avgflow, {|msg|
 optical flow examples
 --
 
-<http://www.memo.tv/bodypaint/>
+<https://www.memo.tv/works/bodypaint/>
 
 ```cpp
 //bodypaint remake
@@ -326,7 +326,7 @@ void keyPressed() {
 easy kinect skeleton
 --
 
-install Synapse from <http://synapsekinect.tumblr.com>
+install Synapse from <https://synapsekinect.tumblr.com>
 
 follow Eli Fieldsteel's SuperCollider Tutorial: 13. Xbox Kinect <https://www.youtube.com/watch?v=dbSTq_UsFK4>
 
@@ -420,11 +420,11 @@ OSCdef(\lostuser, {|msg|
 links
 --
 
-more about kinect... <http://neurogami.com/presentations/KinectForArtists/>
+more about kinect... <https://neurogami.com/presentations/KinectForArtists/>
 
 using infra red camera and lights to find silhouette... <http://www.tmema.org/messa/diagrams/old/concert_2_screen/messa_optical_configurations.pdf> <https://www.youtube.com/watch?v=STRMcmj-gHc>
 
-for tracking hands... <http://leapmotion.com>
+for tracking hands... <https://leapmotion.com>
 
 bonus
 --

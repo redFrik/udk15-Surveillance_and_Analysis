@@ -114,6 +114,6 @@ schematics are on the wiki
 links
 --
 
-music and storytelling: <http://www.laurieanderson.com/gallery/#video>
+music and storytelling: <https://laurieanderson.com/about/>
 
-recommended processing and supercollider tutorials: <http://funprogramming.org>
+recommended processing and supercollider tutorials: <https://funprogramming.org>
